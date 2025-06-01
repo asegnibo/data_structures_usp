@@ -4,6 +4,7 @@ class NoArvore:
         self.esquerda = None
         self.direita = None
 
+
 class ArvoreBinaria:
     def __init__(self):
         self.raiz = None
@@ -20,12 +21,12 @@ class ArvoreBinaria:
             return
 
         novo_no = NoArvore(nome_filho)
-        if posicao == 'e':
+        if posicao == "e":
             if pai.esquerda:
-                self.erro = 'Erro! Filho já existe!'
+                self.erro = "Erro! Filho já existe!"
             else:
                 pai.esquerda = novo_no
-        elif posicao == 'd':
+        elif posicao == "d":
             if pai.direita:
                 self.erro = "Erro! Filho já existe!"
             else:
@@ -38,11 +39,11 @@ class ArvoreBinaria:
             return None
         if no_atual.nome == nome_busca:
             return no_atual
-        
+
         encontrado = self._busca_no(no_atual.esquerda, nome_busca)
         if encontrado:
             return encontrado
-        
+
         return self._busca_no(no_atual.direita, nome_busca)
 
     def busca_no(self, nome_busca):
@@ -84,34 +85,35 @@ class ArvoreBinaria:
     def _calcula_altura(self, no_atual):
         if no_atual is None:
             return -1  # Altura de uma árvore vazia é -1 (por convenção)
-        
+
         altura_esquerda = self._calcula_altura(no_atual.esquerda)
         altura_direita = self._calcula_altura(no_atual.direita)
-        
+
         return 1 + max(altura_esquerda, altura_direita)
 
     def calcula_altura_arvore(self):
         return self._calcula_altura(self.raiz)
-    
+
     def apresentar_erro(self):
-        return self.erro 
+        return self.erro
+
 
 # --- Entrada e Saída ---
 if __name__ == "__main__":
     arvore = ArvoreBinaria()
-    
+
     n = int(input())
-    
+
     for i in range(n):
         linha = input().split()
         if i == 0:
-            arvore.adicionar_filho(None, linha[0], None) # Adiciona o nó raiz
+            arvore.adicionar_filho(None, linha[0], None)  # Adiciona o nó raiz
         else:
             nome_filho = linha[0]
             nome_pai = linha[1]
             posicao = linha[2]
             arvore.adicionar_filho(nome_pai, nome_filho, posicao)
-    
+
     if arvore.apresentar_erro() == None:
         print(";".join(arvore.gera_lista_pre_ordem()) + ";")
         print(";".join(arvore.gera_lista_em_ordem()) + ";")
@@ -119,5 +121,3 @@ if __name__ == "__main__":
         print(arvore.calcula_altura_arvore())
     else:
         print(arvore.apresentar_erro())
-
-    
