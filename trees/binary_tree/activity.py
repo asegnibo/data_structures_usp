@@ -27,22 +27,4 @@ class BinaryTree:
             print(')', end="")
     
 n = int(input())
-root = input()
-
-lista =[]
-for i in range(n-1):
-    lista.append(input().split())
-    lista[i][0] = Node(lista[i][0])
-
-print(lista)
-
-tree = BinaryTree(root)
-
-for i in range(n-1):
-    
-
-    if lista[i][2] == 'e':
-        tree.root.left = lista[1]
-        
-    if lista[i][2] == 'd':
-        tree.root.right = lista[1]
+root = BinaryTree(input())
